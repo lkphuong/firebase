@@ -1,0 +1,5 @@
+node_modules
+logs
+upload
+package-lock.json
+package.json
