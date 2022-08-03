@@ -32,8 +32,11 @@ export class FirebaseService {
           message: message,
         },
       };
-      const result = await firebase.messaging().sendToTopic(topic, payload);
+      const result = await firebase
+        .messaging()
+        .sendToTopic('/topics/mytopic', payload);
       console.log(result);
+      firebase.instanceId();
       return result;
     } catch (error) {
       console.log(error);
@@ -43,7 +46,9 @@ export class FirebaseService {
 
   async subscribeMessage(token: string, topic: string) {
     try {
-      const result = await firebase.messaging().subscribeToTopic(token, topic);
+      const result = await firebase
+        .messaging()
+        .subscribeToTopic(token, '/topics/mytopic');
       console.log(result);
       return result;
     } catch (error) {
@@ -56,7 +61,7 @@ export class FirebaseService {
     try {
       const result = await firebase
         .messaging()
-        .unsubscribeFromTopic(token, topic);
+        .unsubscribeFromTopic(token, '/topics/mytopic');
       console.log(result);
       return result;
     } catch (error) {
